@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Didácticos Franoli</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="shortcut icon" href="img/franoli.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/franoli.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/9d7fd29c3e.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link rel="stylesheet" href="src/styles.css">
+  <script src="src/app.js" type="module"></script>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="container-fluid">
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img src="img/franoli.png" alt="" class="imgr" style="margin-left: 16%;">
+            <div id='Cargando'>
+              Cargando....
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center mt-5" id="Botonera">
+      <div class="col-12 col-sm-6 col-md-4">
+        <button class="btn btn-block btn-secondary" id="consultarStok">Consultar Stock</button>
+        <button class="btn btn-block btn-secondary" id="ingresarStock">Ingresar Stock</button>
+        <button class="btn btn-block btn-secondary" id="vender">Vender</button>
+        <button class="btn btn-block btn-secondary" id="ver-productos">Productos</button>
+        <button class="btn btn-block btn-secondary" id="ver-ventas">Ventas</button>
+        <button class="btn btn-block btn-secondary" id="ver-proveedores">Proveedores</button>
+      </div>
+
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-6 col-md-6 ">
+        <div class="card mt-5 forms" style="display: none;" id="card-entrada">
+          <div class="card-header">
+            Entrada
+            <button style="float: right;" class="volver btn btn-sm btn-info"> <i class="fa fa-caret-left"
+                aria-hidden="true"></i></button>
+          </div>
+          <div class="card-body">
+            <input type="date" name="" id="c-fecha" placeholder="" class="form-control entrada mb-3">
+            <select name="" id="c-producto" class="js-example-basic-single entrada js-states form-control">
+              <option value=''>Selecione Producto</option>
+            </select>
+            <input type="number" id="c-cantidad" placeholder="Cantidad" class="form-control  entrada mb-3 mt-3">
+            <input type="number" name="" id="c-costo" placeholder="Costo" class="form-control entrada mb-3">
+
+            <button class="btn btn-block btn-success" id="btn-entrada">
+              Guardar
+
+
+            </button>
+          </div>
+        </div>
+        <div class="card mt-5 forms" style="display: none;" id="card-stock">
+          <div class="card-header">
+            Consultar Stock
+            <button style="float: right;" class="volver btn btn-sm btn-info"> <i class="fa fa-caret-left"
+                aria-hidden="true"></i></button>
+          </div>
+          <div class="card-body">
+            <table class="table" id="t-stok">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Precio</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-stock">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="mt-5 forms" style="display: none;" id="card-venta">
+          <div class="card mt-5 ">
+            <div class="card-header">
+              Vender
+              <a style="float: right;" class="volver"> <i class="fa fa-caret-left" aria-hidden="true"></i></a>
+            </div>
+            <div class="card-body">
+              <input type="date" name="" id="v-fecha" placeholder="fecha" class="form-control salida mb-3">
+              <input type="text" name="" id="v-cliente" placeholder="Cliente" class="form-control salida mb-3">
+              <select name="" id="v-producto" class="form-control  mb-3">
+                <option value=''>Selecione Producto</option>
+              </select>
+              <input type="number" id="v-precio" placeholder="Costo unitario" class="form-control salida  mb-3 mt-3">
+              <input type="number" id="v-cantidad" placeholder="Cantidad" class="form-control salida mb-3">
+              <input type="number" name="" id="v-total" placeholder="Costo total" class="form-control salida  mb-3">
+
+              <button class="btn btn-block btn-success" id="btn-salida">Guardar</button>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="card mt-5 forms" style="display: none;" id="card-productos">
+          <div id="nuevo-producto" style="display: none;">
+            <div class="card-header">
+              Nuevo Producto
+              <button class="volverProducto btn btn-sm btn-info" style="float: right;"> <i class="fa fa-caret-left"
+                  aria-hidden="true"></i></button>
+            </div>
+            <div class="card-body">
+              <input type="text" name="" id="Nproducto" class="form-control Nproducto mb-3"
+                placeholder="Nombre del producto">
+              <input type="text" name="" id="Ncantidad" class="form-control Nproducto mb-3" placeholder="Cantidad">
+              <input type="text" name="" id="Nprecio" placeholder="Precio" class="form-control Nproducto  mb-3">
+              <select name="" id="Nproveedor" class="form-control  Nproducto  mb-3"></select>
+              <button class="btn btn-block btn-success" id="Nguardar">Guardar</button>
+            </div>
+          </div>
+          <div id="lista-productos">
+            <div class="card-header">
+              Productos
+              <div class="float-right">
+                <button class="btn btn-primary btn-sm mr-5"
+                  onclick="$('#nuevo-producto').show();$('#lista-productos').hide()"><i class="fa fa-plus-circle"
+                    aria-hidden="true"></i></button>
+                <button style="float: right;" class="volver btn btn-sm btn-info"> <i class="fa fa-caret-left"
+                    aria-hidden="true"></i></button>
+              </div>
+
+            </div>
+            <div class="card-body">
+              <table class="table" id="tabla-productos">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Proveedor</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-productos">
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-5 forms" style="display: none;" id="card-producto_editar">
+          <div class="card-header">
+            Editar Producto
+            <a style="float: right;" class="volver"> <i class="fa fa-caret-left" aria-hidden="true"></i></a>
+          </div>
+          <div class="card-body">
+            <form action="">
+              <div class="form-group">
+                <input type="text" name="" id="e-producto" class="form-control" placeholder="producto">
+              </div>
+              <div class="form-group">
+                <input type="text" name="" id="e-stock" class="form-control" placeholder="stock">
+              </div>
+              <div class="form-group">
+                <input type="text" name="" id="e-precio" class="form-control" placeholder="precio">
+              </div>
+              <div class="form-group">
+                <select name="" id="e-proveedor" class="form-control"></select>
+              </div>
+
+              <input type="hidden" name="" id="e-id">
+
+              <div class="row">
+                <div class="col-6">
+                  <a class="btn btn-primary btn-block canelar-edicion" href="">Cancelar</a>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-success btn-block" id="btn-guardar-edicion">Guardar</button>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+        <div class="card mt-5 forms" style="display: none;" id="card-Ventas">
+          <div class="card-header">
+            Ventas
+            <a style="float: right;" class="volver"> <i class="fa fa-caret-left" aria-hidden="true"></i></a>
+          </div>
+          <div class="card-body">
+            <table class="table" id="tablaUltVentas">
+              <thead>
+                <tr>
+                  <td>Producto</td>
+                  <th>Cantidad</th>
+                  <th>Cliente</th>
+                  <th>Precio</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-ventas">
+
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+
+
+        <div class="card mt-5 forms" style="display: none;" id="card-proveedores">
+          <div class="card-header">
+            Consultar proveedor
+            <div class="float-right">
+              <button class="btn btn-primary btn-sm mr-5"
+                onclick="$('#card-proveedor').show();$('#card-proveedores').hide()"><i class="fa fa-user-plus"
+                  aria-hidden="true"></i></button>
+              <button style="float: right;" class="volver btn btn-sm btn-info"> <i class="fa fa-caret-left"
+                  aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table" id="t-proveedores">
+              <thead>
+                <tr>
+                  <th>Razon Social</th>
+                  <th>Telefono</th>
+                  <th>Pagina</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tbody-proveedor">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="mt-5 forms" style="display: none;" id="card-proveedor">
+          <div class="card mt-5 ">
+            <div class="card-header">
+              Nuevo Proveedor
+              <button style="float: right;" class="volverProveedor btn btn-sm btn-primary"> <i class="fa fa-caret-left"
+                  aria-hidden="true"></i></button>
+            </div>
+            <div class="card-body">
+              <input type="text" name="" id="razon_social" placeholder="razon social" class="form-control prov mb-3">
+              <input type="text" name="" id="telefono" placeholder="Telefono" class="form-control prov mb-3">
+              <input type="text" name="" id="pagina" placeholder="Pagina" class="form-control prov mb-3">
+              <button class="btn btn-block btn-success" id="btn-prov">Guardar</button>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="mt-5 forms" style="display: none;" id="card-edit-proveedor">
+          <div class="card mt-5 ">
+            <div class="card-header">
+              Editar Proveedor
+              <a style="float: right;" class="volverProveedor"> <i class="fa fa-caret-left" aria-hidden="true"></i></a>
+            </div>
+            <div class="card-body">
+              <input type="hidden" id="e-prov-id">
+              <input type="text" name="" id="e_razon_social" placeholder="razon social" class="form-control prov mb-3">
+              <input type="text" name="" id="e_telefono" placeholder="Telefono" class="form-control prov mb-3">
+              <input type="text" name="" id="e_pagina" placeholder="Pagina" class="form-control prov mb-3">
+
+              <div class="row">
+                <div class="col-6">
+                  <a class="btn btn-primary btn-block canelar-edicion-prov" href="">Cancelar</a>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-success btn-block" id="btn-guardar-edicion-prov">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          Razon social : <span id="razon-social-text"></span> <br>
+          Telefono : <a href=""  id="telefono-text" target="_blank"></a> <br>
+          Pagina : <a href=""  id="pagina-text" target="_blank"></a> <br>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
